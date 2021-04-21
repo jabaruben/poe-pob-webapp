@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "0e462097-510d-4786-8c11-e5ce7b59f638",
+		"name": "poe-pob-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET example",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hola",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hola"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST example",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hola",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hola"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
