@@ -1,0 +1,14 @@
+{
+  "name": "poe-pob-api",
+  "version": "1.0.0",
+  "description": "API to serve poe-pob data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ÁLEX DLP",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
