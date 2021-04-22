@@ -6,7 +6,7 @@ const SERVER_PORT = 3000;
 const SECRET_KEY = 'cG9lX3BvYl9zZWNyZXQ='; // poe_pob_secret
 const TOKEN_EXPIRATION = '10m';
 const DEFAULT_CORS_OPTIONS = {
-  "origin": "*",
+  "origin": "http://localhost:4200",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSuccessStatus": 200
