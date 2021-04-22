@@ -1,9 +1,16 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
 
 const SERVER_PORT = 3000;
 const SECRET_KEY = 'cG9lX3BvYl9zZWNyZXQ='; // poe_pob_secret
 const TOKEN_EXPIRATION = '10m';
+const DEFAULT_CORS_OPTIONS = {
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204
+}
 
 const app = express();
 app.use(express.json());
@@ -11,11 +18,11 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-app.get('/api', (req, res) => {
+app.get('/api', cors(DEFAULT_CORS_OPTIONS), (req, res) => {
   res.send('API works!');
 });
 
-app.get('/api/logged', verifyToken, (req, res) => {
+app.get('/api/logged', cors(DEFAULT_CORS_OPTIONS), verifyToken, (req, res) => {
   jwt.verify(req.token, SECRET_KEY, (err, authData) => {    
     if(err) {   
       if (err.name === 'TokenExpiredError') {
@@ -30,7 +37,7 @@ app.get('/api/logged', verifyToken, (req, res) => {
   });
 });
 
-app.post('/api/login', verifyUser, (req, res) => {  
+app.post('/api/login', cors(DEFAULT_CORS_OPTIONS), verifyUser, (req, res) => {  
   const user = req.body;
   jwt.sign({user}, SECRET_KEY, {expiresIn: TOKEN_EXPIRATION}, (err, token) => {
     res.json({token});
