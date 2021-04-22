@@ -6,38 +6,99 @@
 	},
 	"item": [
 		{
-			"name": "GET example",
+			"name": "LOGIN",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "ashketchum@poe2pob.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "p4ssw0rd",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost:3000/hola",
+					"raw": "http://localhost:3000/api/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"hola"
+						"api",
+						"login"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "POST example",
+			"name": "LOGGED",
 			"request": {
-				"method": "POST",
-				"header": [],
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": " Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYXNoa2V0Y2h1bUBwb2UycG9iLmNvbSIsInBhc3N3b3JkIjoicDRzc3cwcmQifSwiaWF0IjoxNjE5MTE3MTcwLCJleHAiOjE2MTkxMTcyMDB9.n8YXP8Y2sUrFs2P9BW5UFN4_xPx1v96_x3z7sQ2JK5w",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:3000/hola",
+					"raw": "http://localhost:3000/api/logged",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"hola"
+						"api",
+						"logged"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OTHERWISE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/noRegisterEndpoint",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"noRegisterEndpoint"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api"
 					]
 				}
 			},
