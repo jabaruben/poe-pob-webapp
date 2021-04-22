@@ -9,7 +9,7 @@ const DEFAULT_CORS_OPTIONS = {
   "origin": "*",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
-  "optionsSuccessStatus": 204
+  "optionsSuccessStatus": 200
 }
 
 const app = express();
