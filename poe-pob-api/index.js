@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const SERVER_PORT = 3000;
 const SECRET_KEY = 'cG9lX3BvYl9zZWNyZXQ='; // poe_pob_secret
-const TOKEN_EXPIRATION = '30s';
+const TOKEN_EXPIRATION = '10m';
 
 const app = express();
 app.use(express.json());
@@ -54,8 +54,7 @@ function verifyUser(req, res, next) {
   
   if(validateUser)
     next();
-  else 
-    // FORBIDDEN
+  else
     res.sendStatus(403);
 }
 
@@ -70,7 +69,6 @@ function verifyToken(req, res, next) {
     req.token = bearerToken;
     next();
   } else {
-    // FORBIDDEN
     res.sendStatus(403);
   }
 }
