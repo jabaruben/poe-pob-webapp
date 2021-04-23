@@ -26,14 +26,13 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/login",
+					"raw": "http://localhost:3000/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api",
 						"login"
 					]
 				}
@@ -47,7 +46,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": " Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYXNoa2V0Y2h1bUBwb2UycG9iLmNvbSIsInBhc3N3b3JkIjoicDRzc3cwcmQifSwiaWF0IjoxNjE5MTE3MTcwLCJleHAiOjE2MTkxMTcyMDB9.n8YXP8Y2sUrFs2P9BW5UFN4_xPx1v96_x3z7sQ2JK5w",
+						"value": " Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYXNoa2V0Y2h1bUBwb2UycG9iLmNvbSIsInBhc3N3b3JkIjoicDRzc3cwcmQifSwiaWF0IjoxNjE5MTY5NDg0LCJleHAiOjE2MTkxNzAwODR9.x4wY7__Qt7yaYbmy2spkk0n_aS1cdxtdBLJeHi-iA0U",
 						"type": "text"
 					}
 				],
@@ -91,14 +90,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api",
+					"raw": "http://localhost:3000/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"api"
+						""
 					]
 				}
 			},

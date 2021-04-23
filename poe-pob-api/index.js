@@ -1,16 +1,9 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+const config = require('./config.json');
 
-const SERVER_PORT = 3000;
-const SECRET_KEY = 'cG9lX3BvYl9zZWNyZXQ='; // poe_pob_secret
-const TOKEN_EXPIRATION = '10m';
-const DEFAULT_CORS_OPTIONS = {
-  "origin": "http://localhost:4200",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": false,
-  "optionsSuccessStatus": 200
-}
+const apiRouter = require('./api.routes');
 
 const app = express();
 app.use(express.json());
@@ -18,36 +11,22 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-app.get('/api', cors(DEFAULT_CORS_OPTIONS), (req, res) => {
+app.get('/', (req, res) => {
   res.send('API works!');
 });
 
-app.get('/api/logged', cors(DEFAULT_CORS_OPTIONS), verifyToken, (req, res) => {
-  jwt.verify(req.token, SECRET_KEY, (err, authData) => {    
-    if(err) {   
-      if (err.name === 'TokenExpiredError') {
-        res.status(401).send('Expired Token');
-      } else {
-        res.sendStatus(403);        
-      }
-    } else {
-      delete authData.user.password;
-      res.json({authData});
-    }
-  });
-});
-
-app.post('/api/login', cors(DEFAULT_CORS_OPTIONS), verifyUser, (req, res) => {  
+app.post('/login', verifyUser, (req, res) => {
   const user = req.body;
-  jwt.sign({user}, SECRET_KEY, {expiresIn: TOKEN_EXPIRATION}, (err, token) => {
-    res.json({token});
+  jwt.sign({ user }, config.SECRET_KEY, { expiresIn: config.TOKEN_EXPIRATION }, (err, token) => {
+    res.json({ token });
   });
 });
 
-app.use((req, res, next)=>{res.sendStatus(404);}); // OTHERWISE ENDPOINT
+app.use('/api', cors(config.DEFAULT_CORS_OPTIONS), verifyToken, apiRouter);
+app.use(cors(config.DEFAULT_CORS_OPTIONS), verifyToken, (req, res, next) => { res.sendStatus(404); }); // OTHERWISE ENDPOINT
 
-function verifyUser(req, res, next) {  
-  let validateUser = false;  
+function verifyUser(req, res, next) {
+  let validateUser = false;
   // MOCK user
   const user = {
     email: 'ashketchum@poe2pob.com',
@@ -58,8 +37,8 @@ function verifyUser(req, res, next) {
   // TODO: (MOCK -> BD) validation
   if (req.body && JSON.stringify(req.body) === JSON.stringify(user))
     validateUser = true;
-  
-  if(validateUser)
+
+  if (validateUser)
     next();
   else
     res.sendStatus(403);
@@ -67,10 +46,9 @@ function verifyUser(req, res, next) {
 
 // FORMAT OF TOKEN
 // Authorization: Bearer <acces_token>
-
-function verifyToken(req, res, next) {  
+function verifyToken(req, res, next) {
   const bearerHeader = req.headers['authorization'];
-  if(typeof bearerHeader !== 'undefined') {
+  if (typeof bearerHeader !== 'undefined') {
     const bearer = bearerHeader.split(' ');
     const bearerToken = bearer[1];
     req.token = bearerToken;
@@ -80,4 +58,4 @@ function verifyToken(req, res, next) {
   }
 }
 
-app.listen(SERVER_PORT, () => console.log(`API corriendo en puerto ${SERVER_PORT}`));
+app.listen(config.SERVER_PORT, () => console.log(`API en puerto: ${config.SERVER_PORT}`));
