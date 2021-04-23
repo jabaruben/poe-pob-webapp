@@ -43,13 +43,7 @@
 			"name": "LOGGED",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": " Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiYXNoa2V0Y2h1bUBwb2UycG9iLmNvbSIsInBhc3N3b3JkIjoicDRzc3cwcmQifSwiaWF0IjoxNjE5MTY5NDg0LCJleHAiOjE2MTkxNzAwODR9.x4wY7__Qt7yaYbmy2spkk0n_aS1cdxtdBLJeHi-iA0U",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
 					"raw": "http://localhost:3000/api/logged",
 					"protocol": "http",
