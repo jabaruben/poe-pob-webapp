@@ -18,7 +18,11 @@ app.get('/', (req, res) => {
 app.post('/login', verifyUser, (req, res) => {
   const user = req.body;
   jwt.sign({ user }, config.SECRET_KEY, { expiresIn: config.TOKEN_EXPIRATION }, (err, token) => {
-    res.json({ token });
+    res.json({ 
+      success: 1,
+      message: 'login successfully',
+      token
+    });
   });
 });
 
