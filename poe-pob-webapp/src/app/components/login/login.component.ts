@@ -13,9 +13,10 @@ export class LoginComponent implements OnInit {
   formGroup: FormGroup;
   loadingBar: boolean;
 
-  constructor(private AuthService: AuthServiceService, private router: Router, private _snackBar: MatSnackBar) { }
+  constructor(private AuthService: AuthServiceService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    localStorage.clear();
     this.initForm();
     this.loadingBar = false;
   }
@@ -33,24 +34,34 @@ export class LoginComponent implements OnInit {
       this.AuthService.login(this.formGroup.value).toPromise()
         .then(result => {
           if (result.success) {
-            this.router.navigateByUrl('/');
+            localStorage.setItem('TOKEN', result.token);
+            this.AuthService.logged().toPromise()
+            .then(resp => {
+              console.log(btoa(resp.authData.exp));
+              localStorage.setItem('TOKEN_REFRESH', btoa(resp.authData.exp));
+              this.router.navigateByUrl('/');
+            })
+            .catch(err => this.switchError(err))
+            .finally(() => this.loadingBar = false);
           } else {
             this.showError('Credenciales no válidas');
           }
         })
-        .catch(err => {
-          if (err.status) {
-            this.showError(err.message);
-          } else {
-            this.showError('El servidor no está disponible');
-          }
-        })
-        .finally(() => this.loadingBar = false);
+        .catch(err => this.switchError(err));
+    }
+  }
+
+  switchError(err): void {
+    if (err.status) {
+      this.showError(err.message);
+    } else {
+      this.showError('El servidor no está disponible');
     }
   }
 
   showError(msg): void {
-    this._snackBar.open(msg.trim().replace(/^\w/, (c) => c.toUpperCase()), 'Cerrar', {
+    this.loadingBar = false;
+    this.snackBar.open(msg.trim().replace(/^\w/, (c) => c.toUpperCase()), 'Cerrar', {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top'

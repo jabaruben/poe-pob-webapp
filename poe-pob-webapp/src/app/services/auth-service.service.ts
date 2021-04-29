@@ -14,4 +14,8 @@ export class AuthServiceService {
   login(data: LoginInput): Observable<any> {
     return this.http.post(`${environment.baseUrlAPI}/login`, data);
   }
+
+  logged(): Observable<any> {
+    return this.http.get(`${environment.baseUrlAPI}/api/logged`);
+  }
 }
