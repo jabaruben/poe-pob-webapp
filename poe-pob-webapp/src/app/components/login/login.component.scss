@@ -1,9 +1,16 @@
-.main-div {
-    mat-card {
-        padding: 0px;
+:host {
+    .main-div {
+        background: url('../../../assets/images/ultimatum-bg.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        mat-card {
+            padding: 0px;
+        }
     }
-}
-
-.login-form {
-    padding: 20px;
+    
+    .login-form {
+        padding: 20px;
+    }
 }
