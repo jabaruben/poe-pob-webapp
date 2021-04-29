@@ -1,11 +1,12 @@
-<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">    
+    <mat-progress-bar mode="indeterminate" *ngIf="loadingBar"></mat-progress-bar>
     <mat-card fxFlex="25">
         <mat-toolbar color="primary">Login</mat-toolbar>
         <form fxLayoutAlign="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup" (ngSubmit)="loginProcess()">
             <mat-form-field>
                 <input matInput placeholder="eMail" formControlName="email">
             </mat-form-field>
-
+            
             <mat-form-field>
                 <input matInput type="password" placeholder="Contraseña" formControlName="password">
             </mat-form-field>
