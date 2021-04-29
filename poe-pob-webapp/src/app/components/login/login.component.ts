@@ -34,6 +34,13 @@ export class LoginComponent implements OnInit {
           } else {
             alert(result.message);
           }
+        })
+        .catch(err => {
+          if (err.status) {
+            alert(err.message);
+          } else {
+            alert(`${err.url} is not available!`);
+          }
         });
     }
   }
