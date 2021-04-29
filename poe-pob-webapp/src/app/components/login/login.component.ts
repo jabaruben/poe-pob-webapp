@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('TOKEN', result.token);
             this.AuthService.logged().toPromise()
             .then(resp => {
-              console.log(btoa(resp.authData.exp));
               localStorage.setItem('TOKEN_REFRESH', btoa(resp.authData.exp));
               this.router.navigateByUrl('/');
             })
