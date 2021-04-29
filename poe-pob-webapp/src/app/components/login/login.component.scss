@@ -11,6 +11,12 @@
     }
     
     .login-form {
-        padding: 20px;
+        padding: 20px;        
+        input {
+            height: 30px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
     }
 }
