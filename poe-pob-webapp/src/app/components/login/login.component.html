@@ -2,7 +2,7 @@
     <mat-progress-bar mode="indeterminate" *ngIf="loadingBar"></mat-progress-bar>
     <mat-card fxFlex="25">
         <mat-toolbar color="primary">Login</mat-toolbar>
-        <form fxLayoutAlign="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup" (ngSubmit)="loginProcess()">
+        <form fxLayoutAlign="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup" (ngSubmit)="loginProcess()" *ngIf="formGroup">
             <mat-form-field>
                 <input matInput placeholder="eMail" formControlName="email">
             </mat-form-field>
