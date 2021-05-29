@@ -1,4 +1,4 @@
-import { AuthServiceService } from './../../services/auth-service.service';
+import { AuthServiceService } from './../../../../services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,9 +10,7 @@ export class InitComponent implements OnInit {
 
   constructor(private AuthService: AuthServiceService) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   exit(): void {
     this.AuthService.logOut();

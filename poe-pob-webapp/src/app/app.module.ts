@@ -11,13 +11,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeadersInterceptorService } from './interceptors/headers-interceptor.service';
 
 import { LoginComponent } from './components/login/login.component';
-import { InitComponent } from './components/init/init.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    InitComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
