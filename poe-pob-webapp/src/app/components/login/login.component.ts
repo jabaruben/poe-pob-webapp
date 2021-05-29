@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit {
           }
         })
         .catch(err => this.switchError(err));
+    } else {
+      this.showError('Los campos son obligatorios');
     }
   }
 
