@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.AuthService.isLoggedIn()) {
-      this.router.navigateByUrl('/');
+      this.router.navigate(['/']);
     } else {
       this.AuthService.clearToken();
       this.initForm();
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
             this.AuthService.logged().toPromise()
             .then(resp => {
               this.AuthService.setRefreshToken(resp.authData.exp);
-              this.router.navigateByUrl('/');
+              this.router.navigate(['/']);
             })
             .catch(err => this.switchError(err))
             .finally(() => this.loadingBar = false);

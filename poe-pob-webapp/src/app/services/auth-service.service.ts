@@ -1,6 +1,7 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { LoginInput } from './../models/login-input';
 import { RefreshToken } from './../models/refresh-token';
 import { Observable } from 'rxjs';
@@ -12,7 +13,7 @@ export class AuthServiceService {
   readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(data: LoginInput): Observable<any> {
     return this.http.post(`${environment.baseUrlAPI}/login`, data);
@@ -57,6 +58,11 @@ export class AuthServiceService {
       expiration: new Date(Number(ut3[1]) * 1000)
     };
     return untwisted;
+  }
+
+  logOut(): void {
+    this.clearToken();
+    this.router.navigate(['/login']);
   }
 
 }

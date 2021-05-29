@@ -1,5 +1,5 @@
+import { AuthServiceService } from './../../services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-init',
@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
 })
 export class InitComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private AuthService: AuthServiceService) { }
 
   ngOnInit(): void {
 
   }
 
   exit(): void {
-    this.router.navigateByUrl('/login');
+    this.AuthService.logOut();
   }
 
 }
