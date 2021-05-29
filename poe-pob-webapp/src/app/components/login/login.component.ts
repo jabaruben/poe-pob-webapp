@@ -16,9 +16,13 @@ export class LoginComponent implements OnInit {
   constructor(private AuthService: AuthServiceService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    localStorage.clear();
-    this.initForm();
-    this.loadingBar = false;
+    if (this.AuthService.isLoggedIn()) {
+      this.router.navigateByUrl('/');
+    } else {
+      this.AuthService.clearToken();
+      this.initForm();
+      this.loadingBar = false;
+    }
   }
 
   initForm(): void {
@@ -34,10 +38,10 @@ export class LoginComponent implements OnInit {
       this.AuthService.login(this.formGroup.value).toPromise()
         .then(result => {
           if (result.success) {
-            localStorage.setItem('TOKEN', result.token);
+            this.AuthService.setJWT(result.token);
             this.AuthService.logged().toPromise()
             .then(resp => {
-              localStorage.setItem('TOKEN_REFRESH', btoa(resp.authData.exp));
+              this.AuthService.setRefreshToken(resp.authData.exp);
               this.router.navigateByUrl('/');
             })
             .catch(err => this.switchError(err))
