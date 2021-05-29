@@ -28,10 +28,14 @@ export class AuthServiceService {
   }
 
   isLoggedIn(): boolean {
-    const jwt = localStorage.getItem(this.JWT_TOKEN);
-    const rt = this.untwistToken(localStorage.getItem(this.REFRESH_TOKEN));
-    const loggedIn = (jwt && rt && jwt === rt.jwt && new Date() <= rt.expiration);
-    return loggedIn;
+    try {
+      const jwt = localStorage.getItem(this.JWT_TOKEN);
+      const rt = this.untwistToken(localStorage.getItem(this.REFRESH_TOKEN));
+      const loggedIn = (jwt && rt && jwt === rt.jwt && new Date() <= rt.expiration);
+      return loggedIn;
+    } catch(e) {
+      return false;
+    }
   }
 
   clearToken(): void {
